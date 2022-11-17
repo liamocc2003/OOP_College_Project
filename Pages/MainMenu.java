@@ -1,4 +1,6 @@
-import Pages.RegisterMember;
+package Pages;
+
+import People.Member;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,12 +21,14 @@ public class MainMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new RegisterMember();
+                setVisible(false);
             }
         });
         btnViewMembers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new Member();
+                setVisible(false);
             }
         });
 
