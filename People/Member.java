@@ -1,5 +1,7 @@
 package People;
 
+import javax.swing.*;
+
 public class Member {
     private String firstName;
     private String lastName;
@@ -45,16 +47,59 @@ public class Member {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        for (int i=0;i<firstName.length();i++){
+            if(Character.isLetter(firstName.charAt(i))){
+                this.firstName = firstName;
+            }
+            else{
+                firstName=JOptionPane.showInputDialog("Forename must only be letters.\nPlease re-enter forename: ");
+            }
+        }
     }
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        for (int i=0;i<lastName.length();i++){
+            if(Character.isLetter(lastName.charAt(i)) || lastName.charAt(i)==' ' || lastName.charAt(i)=='-'){
+                this.lastName = lastName;
+            }
+            else{
+                lastName=JOptionPane.showInputDialog("Surname must only be letters.\nPlease re-enter surname: ");
+            }
+        }
     }
     public void setEircode(String eircode) {
-        this.eircode = eircode;
+        if(eircode.length()==7){
+            if(Character.isLetter(eircode.charAt(0))){
+                if(Character.isDigit(eircode.charAt(1))&&Character.isDigit(eircode.charAt(2))){
+                    for(int i=3;i<7;i++) {
+                        if (Character.isDigit(eircode.charAt(i)) || Character.isLetter(eircode.charAt(i))) {
+                            this.eircode = eircode;
+                        }
+                        else{
+                            eircode=JOptionPane.showInputDialog("Invalid eircode. Please re-enter: ");
+                        }
+                    }
+                }
+                else{
+                    eircode=JOptionPane.showInputDialog("Invalid eircode. Please re-enter: ");
+                }
+            }
+            else{
+                eircode=JOptionPane.showInputDialog("Invalid eircode. Please re-enter: ");
+            }
+        }
+        else{
+            eircode=JOptionPane.showInputDialog("Eircode must be only 7 characters long. Re-enter the eircode: ");
+        }
     }
     public void setEmail(String email) {
-        this.email = email;
+        int positionOfSymbol=email.indexOf("@");
+        String afterSymbol=email.substring(positionOfSymbol);
+        if(afterSymbol.equals("@gmail.com") || afterSymbol.equals("@yahoo.com") || afterSymbol.equals("@outlook.com") || afterSymbol.equals("@icloud.com")){
+            this.email = email;
+        }
+        else{
+            email=JOptionPane.showInputDialog("Invalid email. Please re-enter: ");
+        }
     }
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
