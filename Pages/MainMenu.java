@@ -11,6 +11,7 @@ public class MainMenu extends JFrame {
     private JButton btnViewMembers;
     private JLabel titleLabel;
     private JPanel mainPanel;
+    private JLabel picLogo;
 
     public MainMenu() {
         setSize(450,250);
