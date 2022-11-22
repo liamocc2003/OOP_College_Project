@@ -25,6 +25,7 @@ public class RegisterMember extends JFrame{
         setSize(400,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(registerPanel);
+        setLocationRelativeTo(null);
 
         btnRegister.addActionListener(new ActionListener() {
             @Override

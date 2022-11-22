@@ -17,6 +17,7 @@ public class MainMenu extends JFrame {
         setSize(450,250);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(mainPanel);
+        setLocationRelativeTo(null);
 
         btnRegisterMember.addActionListener(new ActionListener() {
             @Override
