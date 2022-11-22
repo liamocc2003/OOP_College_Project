@@ -9,6 +9,11 @@ public class Member {
     private String eircode;
     private String email;
     private String dateOfBirth;
+    private boolean firstNameTrue;
+    private boolean lastNameTrue;
+    private boolean eircodeTrue;
+    private boolean emailTrue;
+    private boolean dateOfBirthTrue;
     private static int memberId=10000;
 
     public Member(){
@@ -17,6 +22,11 @@ public class Member {
         eircode="No data available";
         email="No data available";
         dateOfBirth="No data available";
+        firstNameTrue=false;
+        lastNameTrue=false;
+        eircodeTrue=false;
+        emailTrue=false;
+        dateOfBirthTrue=false;
     }
 
     public Member(String firstName,String lastName,String eircode,String email,String dateOfBirth,int memberId){
@@ -55,6 +65,7 @@ public class Member {
             for (int i=0;i<firstName.length();i++){
                 if(Character.isLetter(firstName.charAt(i))){
                     this.firstName = firstName;
+                    firstNameTrue=true;
                 }
                 else{
                     firstName=JOptionPane.showInputDialog("Forename must only be letters.\nPlease re-enter Forename: ");
@@ -70,6 +81,7 @@ public class Member {
             for (int i=0;i<lastName.length();i++){
                 if(Character.isLetter(lastName.charAt(i)) || lastName.charAt(i)==' ' || lastName.charAt(i)=='-' || lastName.charAt(i)=='\''){
                     this.lastName = lastName;
+                    lastNameTrue=true;
                 }
                 else{
                     lastName=JOptionPane.showInputDialog("Surname must only be letters.\nPlease re-enter Surname: ");
@@ -88,6 +100,7 @@ public class Member {
                         for(int i=3;i<7;i++) {
                             if (Character.isDigit(eircode.charAt(i)) || Character.isLetter(eircode.charAt(i))) {
                                 this.eircode = eircode;
+                                eircodeTrue=true;
                             }
                             else{
                                 eircode=JOptionPane.showInputDialog("Invalid eircode. Please re-enter: ");
@@ -116,6 +129,7 @@ public class Member {
         else{
             if(afterSymbol.equals("@gmail.com") || afterSymbol.equals("@yahoo.com") || afterSymbol.equals("@outlook.com") || afterSymbol.equals("@icloud.com")){
                 this.email = email;
+                emailTrue=true;
             }
             else{
                 email=JOptionPane.showInputDialog("Invalid email. Please re-enter: ");
@@ -123,31 +137,68 @@ public class Member {
         }
     }
     public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-        Calendar currentDate=new GregorianCalendar();
-        int currentYear=currentDate.get(Calendar.YEAR);
-        int userYear=Integer.parseInt(dateOfBirth.substring(6,10));
+        GregorianCalendar currentDate=new GregorianCalendar();
+        int currentYear=Calendar.getInstance().get(Calendar.YEAR);
+        String userDayStr=dateOfBirth.substring(0,2);
+        String userMonthStr=dateOfBirth.substring(3,5);
+        String userYearStr=dateOfBirth.substring(6);
         if(dateOfBirth.equals("")){
             dateOfBirth=JOptionPane.showInputDialog("Field is empty.\nPlease enter a Date of Birth: ");
         }
-        else if (currentYear-userYear<18) {
-            JOptionPane.showMessageDialog(null,"Member is too young to join.\nMust be 18 or older","Age Verification",JOptionPane.INFORMATION_MESSAGE);
+        else if(dateOfBirth.length()==10){
+            for(int i=0;i<2;i++){
+                if(Character.isDigit(userDayStr.charAt(i))){
+                    for(i=3;i<5;i++){
+                        if(Character.isDigit(userMonthStr.charAt(i))){
+                            for(i=6;i<11;i++){
+                                if(Character.isDigit(userYearStr.charAt(i))){
+                                    int userYear=Integer.parseInt(userYearStr);
+                                    if(currentYear-userYear<18){
+                                        JOptionPane.showMessageDialog(null,"Member is too young to join.\nMust be 18 or older","Age Verification",JOptionPane.INFORMATION_MESSAGE);
+                                    }
+                                    else{
+                                        this.dateOfBirth = dateOfBirth;
+                                        dateOfBirthTrue=true;
+                                    }
+                                }
+                                else{
+                                    JOptionPane.showInputDialog("Month value was entered incorrectly.\nPlease re-enter Date of Birth with format DD-MM-YYYY:");
+                                }
+                            }
+                        }
+                        else{
+                            JOptionPane.showInputDialog("Month value was entered incorrectly.\nPlease re-enter Date of Birth with format DD-MM-YYYY:");
+                        }
+                    }
+                }
+                else{
+                    JOptionPane.showInputDialog("Day value was entered incorrectly.\nPlease re-enter Date of Birth with format DD-MM-YYYY:");
+                }
+            }
         }
         else{
-
+            JOptionPane.showInputDialog("Field is not the right length.\nPlease follow the format DD-MM-YYYY: ");
         }
     }
     public void setMemberId(int memberId) {
-        this.memberId = ++memberId;
+        if(firstNameTrue==true && lastNameTrue==true && eircodeTrue==true && emailTrue==true && dateOfBirthTrue==true){
+            this.memberId = ++memberId;
+        }
     }
 
     public String toString(){
-        String str="Member's Name: "+getFirstName()+" "+getLastName()+
-                "\nMember's Eircode: "+getEircode()+
-                "\nMember's Email: "+getEmail()+
-                "\nMember's Date of Birth: "+getDateOfBirth()+
-                "\nMember's ID: L"+getMemberId();
+        String str;
+        if(firstNameTrue==true && lastNameTrue==true && eircodeTrue==true && emailTrue==true && dateOfBirthTrue==true){
+            str="Member's Name: "+getFirstName()+" "+getLastName()+
+                    "\nMember's Eircode: "+getEircode()+
+                    "\nMember's Email: "+getEmail()+
+                    "\nMember's Date of Birth: "+getDateOfBirth()+
+                    "\nMember's ID: L"+getMemberId();
 
-        return str;
+            return str;
+        }
+        else{
+            return str="Invalid data entered! Please enter required fields correctly.";
+        }
     }
 }

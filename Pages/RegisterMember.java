@@ -1,6 +1,8 @@
 package Pages;
 
 import People.Member;
+import People.SaveMembers;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +33,9 @@ public class RegisterMember extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String output="";
+                int i=0;
+
+                SaveMembers savedMembers[]=new SaveMembers[10];
 
                 Member m1=new Member();
 
@@ -50,8 +55,6 @@ public class RegisterMember extends JFrame{
                 m1.setDateOfBirth(dateOfBirth);
 
                 output+=m1.toString();
-
-                System.out.println(output+"\n");
             }
         });
 
