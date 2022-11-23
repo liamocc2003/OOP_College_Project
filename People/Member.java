@@ -39,6 +39,8 @@ public class Member {
         allFirstNames.add(firstName);
         allLastNames=new ArrayList<String>();
         allLastNames.add(lastName);
+        allNames=new ArrayList<String>();
+        allNames.add(firstName+" "+lastName);
         allEircodes=new ArrayList<String>();
         allEircodes.add(eircode);
         allEmails=new ArrayList<String>();
@@ -50,7 +52,7 @@ public class Member {
         //https://stackoverflow.com/questions/16462163/java-how-to-access-an-arraylist-of-another-class
     }
 
-    public Member(String firstName,String lastName,String eircode,String email,String dateOfBirth,int memberId){
+    public Member(String firstName,String lastName,String eircode,String email,String dateOfBirth,int memberId,ArrayList<String> allFirstNames,ArrayList<String> allLastNames,ArrayList<String> allNames,ArrayList<String> allEircodes,ArrayList<String> allEmails,ArrayList<String> allDateOfBirths,ArrayList<Integer> allMemberIds){
         setFirstName(firstName);
         setLastName(lastName);
         setEircode(eircode);
@@ -181,41 +183,34 @@ public class Member {
     public void setDateOfBirth(String dateOfBirth) {
         GregorianCalendar currentDate=new GregorianCalendar();
         int currentYear=Calendar.getInstance().get(Calendar.YEAR);
-        String userDayStr=dateOfBirth.substring(0,2);
-        String userMonthStr=dateOfBirth.substring(3,5);
         String userYearStr=dateOfBirth.substring(6);
         if(dateOfBirth.equals("")){
             dateOfBirth=JOptionPane.showInputDialog("Field is empty.\nPlease enter a Date of Birth: ");
         }
-        else if(dateOfBirth.length()!=1){
-            for(int i=0;i<=1;i++){
-                if(Character.isDigit(userDayStr.charAt(i))){
-                    for(i=3;i<=4;i++){
-                        if(Character.isDigit(userMonthStr.charAt(i))){
-                            for(i=6;i<=9;i++){
-                                if(Character.isDigit(userYearStr.charAt(i))){
-                                    int userYear=Integer.parseInt(userYearStr);
-                                    if(currentYear-userYear<18){
-                                        JOptionPane.showMessageDialog(null,"Member is too young to join.\nMust be 18 or older","Age Verification",JOptionPane.INFORMATION_MESSAGE);
-                                    }
-                                    else{
-                                        this.dateOfBirth = dateOfBirth;
-                                        dateOfBirthTrue=true;
-                                    }
-                                }
-                                else{
-                                    JOptionPane.showInputDialog("Month value was entered incorrectly.\nPlease re-enter Date of Birth with format DD-MM-YYYY:");
-                                }
-                            }
+        else if(dateOfBirth.length()==10){
+            System.out.print(dateOfBirth.length());
+            if(Character.isDigit(dateOfBirth.charAt(0)) && Character.isDigit(dateOfBirth.charAt(1))){
+                if(Character.isDigit(dateOfBirth.charAt(3)) && Character.isDigit(dateOfBirth.charAt(4))){
+                    if(Character.isDigit(dateOfBirth.charAt(6)) && Character.isDigit(dateOfBirth.charAt(7)) && Character.isDigit(dateOfBirth.charAt(8)) && Character.isDigit(dateOfBirth.charAt(9))){
+                        int userYear=Integer.parseInt(userYearStr);
+                        if(currentYear-userYear<18){
+                            JOptionPane.showMessageDialog(null,"Member is too young to join.\nMust be 18 or older","Age Verification",JOptionPane.INFORMATION_MESSAGE);
                         }
                         else{
-                            JOptionPane.showInputDialog("Month value was entered incorrectly.\nPlease re-enter Date of Birth with format DD-MM-YYYY:");
+                            this.dateOfBirth = dateOfBirth;
+                            dateOfBirthTrue=true;
                         }
+                    }
+                    else{
+                        JOptionPane.showInputDialog("Month value was entered incorrectly.\nPlease re-enter Date of Birth with format DD-MM-YYYY:");
                     }
                 }
                 else{
-                    JOptionPane.showInputDialog("Day value was entered incorrectly.\nPlease re-enter Date of Birth with format DD-MM-YYYY:");
+                    JOptionPane.showInputDialog("Month value was entered incorrectly.\nPlease re-enter Date of Birth with format DD-MM-YYYY:");
                 }
+            }
+            else{
+                JOptionPane.showInputDialog("Day value was entered incorrectly.\nPlease re-enter Date of Birth with format DD-MM-YYYY:");
             }
         }
         else{
