@@ -15,6 +15,13 @@ public class Member {
     private boolean emailTrue;
     private boolean dateOfBirthTrue;
     private static int memberId=10000;
+    private ArrayList<String> allFirstNames;
+    private ArrayList<String> allLastNames;
+    private ArrayList<String> allNames;
+    private ArrayList<String> allEircodes;
+    private ArrayList<String> allEmails;
+    private ArrayList<String> allDateOfBirths;
+    private ArrayList<Integer> allMemberIds;
 
     public Member(){
         firstName="No data available";
@@ -27,6 +34,20 @@ public class Member {
         eircodeTrue=false;
         emailTrue=false;
         dateOfBirthTrue=false;
+
+        allFirstNames=new ArrayList<String>();
+        allFirstNames.add(firstName);
+        allLastNames=new ArrayList<String>();
+        allLastNames.add(lastName);
+        allEircodes=new ArrayList<String>();
+        allEircodes.add(eircode);
+        allEmails=new ArrayList<String>();
+        allEmails.add(email);
+        allDateOfBirths=new ArrayList<String>();
+        allDateOfBirths.add(dateOfBirth);
+        allMemberIds=new ArrayList<Integer>();
+        allMemberIds.add(memberId);
+        //https://stackoverflow.com/questions/16462163/java-how-to-access-an-arraylist-of-another-class
     }
 
     public Member(String firstName,String lastName,String eircode,String email,String dateOfBirth,int memberId){
@@ -55,6 +76,27 @@ public class Member {
     }
     public int getMemberId() {
         return ++memberId;
+    }
+    public ArrayList<String> getAllFirstNames() {
+        return allFirstNames;
+    }
+    public ArrayList<String> getAllLastNames() {
+        return allLastNames;
+    }
+    public ArrayList<String> getAllEircodes() {
+        return allEircodes;
+    }
+    public ArrayList<String> getAllEmails() {
+        return allEmails;
+    }
+    public ArrayList<String> getAllDateOfBirths() {
+        return allDateOfBirths;
+    }
+    public ArrayList<Integer> getAllMemberIds() {
+        return allMemberIds;
+    }
+    public ArrayList<String> getAllNames() {
+        return allNames;
     }
 
     public void setFirstName(String firstName) {
@@ -145,12 +187,12 @@ public class Member {
         if(dateOfBirth.equals("")){
             dateOfBirth=JOptionPane.showInputDialog("Field is empty.\nPlease enter a Date of Birth: ");
         }
-        else if(dateOfBirth.length()==10){
-            for(int i=0;i<2;i++){
+        else if(dateOfBirth.length()!=1){
+            for(int i=0;i<=1;i++){
                 if(Character.isDigit(userDayStr.charAt(i))){
-                    for(i=3;i<5;i++){
+                    for(i=3;i<=4;i++){
                         if(Character.isDigit(userMonthStr.charAt(i))){
-                            for(i=6;i<11;i++){
+                            for(i=6;i<=9;i++){
                                 if(Character.isDigit(userYearStr.charAt(i))){
                                     int userYear=Integer.parseInt(userYearStr);
                                     if(currentYear-userYear<18){

@@ -73,6 +73,7 @@
         </constraints>
         <properties>
           <font size="14" style="0"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="7264e" class="javax.swing.JLabel" binding="emailLabel">
