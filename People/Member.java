@@ -15,13 +15,11 @@ public class Member {
     private boolean emailTrue;
     private boolean dateOfBirthTrue;
     private static int memberId=10000;
-    private String[] allFirstNames;
-    private String[] allLastNames;
     private String[] allNames;
     private String[] allEircodes;
     private String[] allEmails;
     private String[] allDateOfBirths;
-    private String[] allMemberIds;
+    private int[] allMemberIds;
 
     public Member(){
         firstName="No data available";
@@ -35,23 +33,27 @@ public class Member {
         emailTrue=false;
         dateOfBirthTrue=false;
 
-        allFirstNames=new String[100];
-        allLastNames=new String[100];
-        allNames=new String[100];
-        allEircodes=new String[100];
-        allEmails=new String[100];
-        allDateOfBirths=new String[100];
-        allMemberIds=new String[100];
+        allNames=new String[10];
+        allEircodes=new String[10];
+        allEmails=new String[10];
+        allDateOfBirths=new String[10];
+        allMemberIds=new int[10];
         //https://stackoverflow.com/questions/16462163/java-how-to-access-an-arraylist-of-another-class
     }
 
-    public Member(String firstName,String lastName,String eircode,String email,String dateOfBirth,int memberId,ArrayList<String> allFirstNames,ArrayList<String> allLastNames,ArrayList<String> allNames,ArrayList<String> allEircodes,ArrayList<String> allEmails,ArrayList<String> allDateOfBirths,ArrayList<Integer> allMemberIds){
+    public Member(String firstName,String lastName,String eircode,String email,String dateOfBirth,int memberId,String[] allNames,String[] allEircodes,String[] allEmails,String[] allDateOfBirths,int[] allMemberIds){
         setFirstName(firstName);
         setLastName(lastName);
         setEircode(eircode);
         setEmail(email);
         setDateOfBirth(dateOfBirth);
         setMemberId(memberId);
+
+        setAllNames(allNames);
+        setAllEircodes(allEircodes);
+        setAllEmails(allEmails);
+        setAllDateOfBirths(allDateOfBirths);
+        setAllMemberIds(allMemberIds);
     }
 
     public String getFirstName() {
@@ -71,6 +73,22 @@ public class Member {
     }
     public int getMemberId() {
         return ++memberId;
+    }
+
+    public String[] getAllNames() {
+        return allNames;
+    }
+    public String[] getAllEircodes() {
+        return allEircodes;
+    }
+    public String[] getAllEmails() {
+        return allEmails;
+    }
+    public String[] getAllDateOfBirths() {
+        return allDateOfBirths;
+    }
+    public int[] getAllMemberIds() {
+        return allMemberIds;
     }
 
     public void setFirstName(String firstName) {
@@ -188,11 +206,26 @@ public class Member {
             JOptionPane.showInputDialog("Field is not the right length.\nPlease follow the format DD-MM-YYYY: ");
         }
     }
-
     public void setMemberId(int memberId) {
         if(firstNameTrue==true && lastNameTrue==true && eircodeTrue==true && emailTrue==true && dateOfBirthTrue==true){
             this.memberId = ++memberId;
         }
+    }
+
+    public void setAllNames(String[] allNames) {
+        this.allNames = allNames;
+    }
+    public void setAllEircodes(String[] allEircodes) {
+        this.allEircodes = allEircodes;
+    }
+    public void setAllEmails(String[] allEmails) {
+        this.allEmails = allEmails;
+    }
+    public void setAllDateOfBirths(String[] allDateOfBirths) {
+        this.allDateOfBirths=allDateOfBirths;
+    }
+    public void setAllMemberIds(int[] allMemberIds) {
+        this.allMemberIds = allMemberIds;
     }
 
     public String toString(){
