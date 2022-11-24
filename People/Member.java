@@ -36,19 +36,12 @@ public class Member {
         dateOfBirthTrue=false;
 
         allFirstNames=new ArrayList<String>();
-        allFirstNames.add(firstName);
         allLastNames=new ArrayList<String>();
-        allLastNames.add(lastName);
         allNames=new ArrayList<String>();
-        allNames.add(firstName+" "+lastName);
         allEircodes=new ArrayList<String>();
-        allEircodes.add(eircode);
         allEmails=new ArrayList<String>();
-        allEmails.add(email);
         allDateOfBirths=new ArrayList<String>();
-        allDateOfBirths.add(dateOfBirth);
         allMemberIds=new ArrayList<Integer>();
-        allMemberIds.add(memberId);
         //https://stackoverflow.com/questions/16462163/java-how-to-access-an-arraylist-of-another-class
     }
 
@@ -59,6 +52,13 @@ public class Member {
         setEmail(email);
         setDateOfBirth(dateOfBirth);
         setMemberId(memberId);
+        setAllFirstNames(allFirstNames);
+        setAllLastNames(allLastNames);
+        setAllNames(allNames);
+        setAllEircodes(allEircodes);
+        setAllEmails(allEmails);
+        setAllDateOfBirths(allDateOfBirths);
+        setAllMemberIds(allMemberIds);
     }
 
     public String getFirstName() {
@@ -217,6 +217,35 @@ public class Member {
             JOptionPane.showInputDialog("Field is not the right length.\nPlease follow the format DD-MM-YYYY: ");
         }
     }
+
+    public void setAllFirstNames(ArrayList<String> allFirstNames) {
+        this.allFirstNames = allFirstNames;
+    }
+    public void setAllLastNames(ArrayList<String> allLastNames) {
+        allLastNames.add(lastName);
+        this.allLastNames = allLastNames;
+    }
+    public void setAllNames(ArrayList<String> allNames) {
+        allNames.add(firstName+" "+lastName);
+        this.allNames = allNames;
+    }
+    public void setAllEircodes(ArrayList<String> allEircodes) {
+        allEircodes.add(eircode);
+        this.allEircodes = allEircodes;
+    }
+    public void setAllEmails(ArrayList<String> allEmails) {
+        allEmails.add(email);
+        this.allEmails = allEmails;
+    }
+    public void setAllDateOfBirths(ArrayList<String> allDateOfBirths) {
+        allDateOfBirths.add(dateOfBirth);
+        this.allDateOfBirths = allDateOfBirths;
+    }
+    public void setAllMemberIds(ArrayList<Integer> allMemberIds) {
+        allMemberIds.add(memberId);
+        this.allMemberIds = allMemberIds;
+    }
+
     public void setMemberId(int memberId) {
         if(firstNameTrue==true && lastNameTrue==true && eircodeTrue==true && emailTrue==true && dateOfBirthTrue==true){
             this.memberId = ++memberId;

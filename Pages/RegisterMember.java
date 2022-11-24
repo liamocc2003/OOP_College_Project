@@ -3,7 +3,7 @@ package Pages;
 import People.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.ArrayList;
 
 public class RegisterMember extends JFrame{
     private JPanel registerPanel;
@@ -31,6 +31,7 @@ public class RegisterMember extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String output="";
+                int i=0;
 
                 Member m1=new Member();
 
