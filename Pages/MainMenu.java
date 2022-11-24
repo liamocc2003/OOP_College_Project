@@ -8,6 +8,7 @@ public class MainMenu extends JFrame {
     private JButton btnViewMembers;
     private JLabel titleLabel;
     private JPanel mainPanel;
+    private JButton btnExitMenu;
 
     public MainMenu() {
         setSize(450,250);
@@ -23,17 +24,16 @@ public class MainMenu extends JFrame {
                 setVisible(false);
             }
         });
-        btnViewMembers.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ViewMembers();
-                setVisible(false);
-            }
-        });
+
 
         setVisible(true);
+        btnExitMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
     }
-
     public static void main(String[] args) {
         MainMenu mainMenu=new MainMenu();
     }

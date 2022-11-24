@@ -3,7 +3,6 @@ package Pages;
 import People.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 public class RegisterMember extends JFrame{
     private JPanel registerPanel;
@@ -20,9 +19,10 @@ public class RegisterMember extends JFrame{
     private JTextField txtDob;
     private JButton btnRegister;
     private JButton btnBack;
+    private JButton btnViewMembers;
 
     public RegisterMember(){
-        setSize(400,500);
+        setSize(450,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(registerPanel);
         setLocationRelativeTo(null);
@@ -32,6 +32,11 @@ public class RegisterMember extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String output="";
                 int i=0;
+                String[] allNames=new String[10];
+                String[] allEircodes=new String[10];
+                String[] allEmails=new String[10];
+                String[] allDateOfBirths=new String[10];
+                int[] allMemberIds=new int[10];
 
                 Member m1=new Member();
 
@@ -50,6 +55,12 @@ public class RegisterMember extends JFrame{
                 String dateOfBirth=txtDob.getText();
                 m1.setDateOfBirth(dateOfBirth);
 
+                allNames[i]=forename+surname;
+                allEircodes[i]=eircode;
+                allEmails[i]=email;
+                allDateOfBirths[i]=dateOfBirth;
+                allMemberIds[i]=m1.getMemberId();
+
                 output+=m1.toString();
 
                 System.out.println(output);
@@ -62,6 +73,12 @@ public class RegisterMember extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 new MainMenu();
                 setVisible(false);
+            }
+        });
+        btnViewMembers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }

@@ -15,13 +15,13 @@ public class Member {
     private boolean emailTrue;
     private boolean dateOfBirthTrue;
     private static int memberId=10000;
-    private ArrayList<String> allFirstNames;
-    private ArrayList<String> allLastNames;
-    private ArrayList<String> allNames;
-    private ArrayList<String> allEircodes;
-    private ArrayList<String> allEmails;
-    private ArrayList<String> allDateOfBirths;
-    private ArrayList<Integer> allMemberIds;
+    private String[] allFirstNames;
+    private String[] allLastNames;
+    private String[] allNames;
+    private String[] allEircodes;
+    private String[] allEmails;
+    private String[] allDateOfBirths;
+    private String[] allMemberIds;
 
     public Member(){
         firstName="No data available";
@@ -35,13 +35,13 @@ public class Member {
         emailTrue=false;
         dateOfBirthTrue=false;
 
-        allFirstNames=new ArrayList<String>();
-        allLastNames=new ArrayList<String>();
-        allNames=new ArrayList<String>();
-        allEircodes=new ArrayList<String>();
-        allEmails=new ArrayList<String>();
-        allDateOfBirths=new ArrayList<String>();
-        allMemberIds=new ArrayList<Integer>();
+        allFirstNames=new String[100];
+        allLastNames=new String[100];
+        allNames=new String[100];
+        allEircodes=new String[100];
+        allEmails=new String[100];
+        allDateOfBirths=new String[100];
+        allMemberIds=new String[100];
         //https://stackoverflow.com/questions/16462163/java-how-to-access-an-arraylist-of-another-class
     }
 
@@ -52,13 +52,6 @@ public class Member {
         setEmail(email);
         setDateOfBirth(dateOfBirth);
         setMemberId(memberId);
-        setAllFirstNames(allFirstNames);
-        setAllLastNames(allLastNames);
-        setAllNames(allNames);
-        setAllEircodes(allEircodes);
-        setAllEmails(allEmails);
-        setAllDateOfBirths(allDateOfBirths);
-        setAllMemberIds(allMemberIds);
     }
 
     public String getFirstName() {
@@ -78,27 +71,6 @@ public class Member {
     }
     public int getMemberId() {
         return ++memberId;
-    }
-    public ArrayList<String> getAllFirstNames() {
-        return allFirstNames;
-    }
-    public ArrayList<String> getAllLastNames() {
-        return allLastNames;
-    }
-    public ArrayList<String> getAllEircodes() {
-        return allEircodes;
-    }
-    public ArrayList<String> getAllEmails() {
-        return allEmails;
-    }
-    public ArrayList<String> getAllDateOfBirths() {
-        return allDateOfBirths;
-    }
-    public ArrayList<Integer> getAllMemberIds() {
-        return allMemberIds;
-    }
-    public ArrayList<String> getAllNames() {
-        return allNames;
     }
 
     public void setFirstName(String firstName) {
@@ -188,7 +160,6 @@ public class Member {
             dateOfBirth=JOptionPane.showInputDialog("Field is empty.\nPlease enter a Date of Birth: ");
         }
         else if(dateOfBirth.length()==10){
-            System.out.print(dateOfBirth.length());
             if(Character.isDigit(dateOfBirth.charAt(0)) && Character.isDigit(dateOfBirth.charAt(1))){
                 if(Character.isDigit(dateOfBirth.charAt(3)) && Character.isDigit(dateOfBirth.charAt(4))){
                     if(Character.isDigit(dateOfBirth.charAt(6)) && Character.isDigit(dateOfBirth.charAt(7)) && Character.isDigit(dateOfBirth.charAt(8)) && Character.isDigit(dateOfBirth.charAt(9))){
@@ -216,34 +187,6 @@ public class Member {
         else{
             JOptionPane.showInputDialog("Field is not the right length.\nPlease follow the format DD-MM-YYYY: ");
         }
-    }
-
-    public void setAllFirstNames(ArrayList<String> allFirstNames) {
-        this.allFirstNames = allFirstNames;
-    }
-    public void setAllLastNames(ArrayList<String> allLastNames) {
-        allLastNames.add(lastName);
-        this.allLastNames = allLastNames;
-    }
-    public void setAllNames(ArrayList<String> allNames) {
-        allNames.add(firstName+" "+lastName);
-        this.allNames = allNames;
-    }
-    public void setAllEircodes(ArrayList<String> allEircodes) {
-        allEircodes.add(eircode);
-        this.allEircodes = allEircodes;
-    }
-    public void setAllEmails(ArrayList<String> allEmails) {
-        allEmails.add(email);
-        this.allEmails = allEmails;
-    }
-    public void setAllDateOfBirths(ArrayList<String> allDateOfBirths) {
-        allDateOfBirths.add(dateOfBirth);
-        this.allDateOfBirths = allDateOfBirths;
-    }
-    public void setAllMemberIds(ArrayList<Integer> allMemberIds) {
-        allMemberIds.add(memberId);
-        this.allMemberIds = allMemberIds;
     }
 
     public void setMemberId(int memberId) {
