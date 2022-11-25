@@ -140,7 +140,7 @@
         </constraints>
         <properties>
           <font size="14" style="0"/>
-          <text value="View Members"/>
+          <text value="View Recent Members"/>
         </properties>
       </component>
     </children>

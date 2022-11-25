@@ -114,8 +114,8 @@ public class RegisterMember extends JFrame{
             allMemberIds[i]=vm1.getMemberId();
             vm1.setAllMemberIds(allMemberIds);
 
-            for(int x=i;x<vm1.getAllNames().length;x++){
-                data+=allNames[i]+"   "+allEircodes[i]+"   "+allEmails[i]+"   "+allDateOfBirths[i]+"   "+(allMemberIds[i]-1)+"   "+"\n";
+            for(int x=0;x<1;x++){
+                data+=allNames[i]+"   "+allEircodes[i]+"   "+allEmails[i]+"   "+allDateOfBirths[i]+"   "+(allMemberIds[i]-1)+"   ";
             }
             JOptionPane.showMessageDialog(null,"All Members data:"+"\n"+data,"View Members",JOptionPane.INFORMATION_MESSAGE);
             i++;
