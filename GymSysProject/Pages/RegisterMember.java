@@ -3,6 +3,8 @@ package GymSysProject.Pages;
 import GymSysProject.People.Member;
 
 import javax.swing.*;
+import java.io.*;
+import java.util.ArrayList;
 
 public class RegisterMember extends JFrame{
     private JPanel registerPanel;
@@ -28,7 +30,7 @@ public class RegisterMember extends JFrame{
     private int[] allMemberIds=new int[10];
 
     public RegisterMember(){
-        setSize(450,500);
+        setSize(500,400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(registerPanel);
         setLocationRelativeTo(null);
@@ -118,14 +120,33 @@ public class RegisterMember extends JFrame{
                 data+=allNames[i]+"   "+allEircodes[i]+"   "+allEmails[i]+"   "+allDateOfBirths[i]+"   "+(allMemberIds[i]-1)+"   ";
             }
             JOptionPane.showMessageDialog(null,"All Members data:"+"\n"+data,"View Members",JOptionPane.INFORMATION_MESSAGE);
+
+            File outFile=new File("memberData.txt");
+            try{
+                FileOutputStream outStream=new FileOutputStream(outFile);
+
+                Member m1=new Member();
+                m1.getFirstName();
+                m1.getLastName();
+                m1.getAllEircodes();
+                m1.getAllEmails();
+                m1.getDateOfBirth();
+                m1.getMemberId();
+
+                ObjectOutputStream objOutStr=new ObjectOutputStream(outStream);
+                objOutStr.writeObject(m1);
+
+                outStream.close();
+            }
+            catch (FileNotFoundException fnfe){
+                System.out.println(fnfe.getMessage());
+            }
+            catch(IOException ioe){
+                System.out.println(ioe.getMessage());
+            }
             i++;
         });
     }
-
-    public static void saveFiles(){
-
-    }
-
     public static void main(String[] args) {
         new RegisterMember();
     }
