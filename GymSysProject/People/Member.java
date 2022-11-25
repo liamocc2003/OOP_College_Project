@@ -1,4 +1,4 @@
-package People;
+package GymSysProject.People;
 
 import javax.swing.*;
 import java.util.*;
@@ -92,7 +92,7 @@ public class Member {
     }
 
     public void setFirstName(String firstName) {
-        while(firstNameTrue==false) {
+        while(!firstNameTrue) {
             if (firstName.equals("")) {
                 firstName = JOptionPane.showInputDialog("Field is empty.\nPlease enter a Forename: ");
             } else {
@@ -108,7 +108,7 @@ public class Member {
         }
     }
     public void setLastName(String lastName) {
-        while(lastNameTrue==false) {
+        while(!lastNameTrue) {
             if (lastName.equals("")) {
                 lastName = JOptionPane.showInputDialog("Field is empty.\nPlease enter a Surname: ");
             } else {
@@ -124,7 +124,7 @@ public class Member {
         }
     }
     public void setEircode(String eircode) {
-        while(eircodeTrue==false) {
+        while(!eircodeTrue) {
             if (eircode.equals("")) {
                 eircode = JOptionPane.showInputDialog("Field is empty.\nPlease enter an Eircode: ");
             } else {
@@ -154,7 +154,7 @@ public class Member {
     public void setEmail(String email) {
         int positionOfSymbol=email.indexOf("@");
         String afterSymbol=email.substring(positionOfSymbol);
-        while(emailTrue==false) {
+        while(!emailTrue) {
             if (email.equals("")) {
                 email = JOptionPane.showInputDialog("Field is empty.\nPlease enter an Email: ");
             } else {
@@ -168,10 +168,9 @@ public class Member {
         }
     }
     public void setDateOfBirth(String dateOfBirth) {
-        GregorianCalendar currentDate=new GregorianCalendar();
         int currentYear=Calendar.getInstance().get(Calendar.YEAR);
         String userYearStr=dateOfBirth.substring(6);
-        while (dateOfBirthTrue==false) {
+        while (!dateOfBirthTrue) {
             if (dateOfBirth.equals("")) {
                 dateOfBirth = JOptionPane.showInputDialog("Field is empty.\nPlease enter a Date of Birth: ");
             } else if (dateOfBirth.length() == 10) {
@@ -200,7 +199,7 @@ public class Member {
         }
     }
     public void setMemberId(int memberId) {
-        if(firstNameTrue==true && lastNameTrue==true && eircodeTrue==true && emailTrue==true && dateOfBirthTrue==true){
+        if(firstNameTrue && lastNameTrue && eircodeTrue && emailTrue && dateOfBirthTrue){
             this.memberId = memberId;
         }
     }
@@ -223,7 +222,7 @@ public class Member {
 
     public String toString(){
         String str;
-        if(firstNameTrue==true && lastNameTrue==true && eircodeTrue==true && emailTrue==true && dateOfBirthTrue==true){
+        if(firstNameTrue && lastNameTrue && eircodeTrue && emailTrue && dateOfBirthTrue){
             str="Member's Name: "+getFirstName()+" "+getLastName()+
                     "\nMember's Eircode: "+getEircode()+
                     "\nMember's Email: "+getEmail()+
@@ -232,8 +231,6 @@ public class Member {
 
             return str;
         }
-        else{
-            return str="Invalid data entered! Please enter required fields correctly.";
-        }
+        return "Invalid data entered!";
     }
 }
